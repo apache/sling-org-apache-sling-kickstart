@@ -77,6 +77,7 @@ Copyright(c) 2020 The Apache Software Foundation.
 ```
 
 These are the additional parameters:
+
 **-s**: this takes a path to a Feature Model (FM) that replaces the provided
 Sling Feature Module. With it it is possible to provide your own Sling FM
 which may or may not contain your own project FMs.
