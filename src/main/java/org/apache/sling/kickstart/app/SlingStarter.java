@@ -37,9 +37,9 @@ import picocli.CommandLine.Parameters;
 
 
 @Command(
-    name = "java -jar <Sling Feature Starter JAR File>",
-    description = "Apache Sling Feature Starter",
-    footer = "Copyright(c) 2019 The Apache Software Foundation."
+    name = "java -jar <Sling Kickstarter JAR File>",
+    description = "Apache Sling Kickstart",
+    footer = "Copyright(c) 2020 The Apache Software Foundation."
 )
 public class SlingStarter implements Runnable, ControlTarget {
 

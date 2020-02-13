@@ -1,0 +1,7 @@
+github:
+  description: "Apache Sling Kickstart Launcher"
+  homepage: "https://sling.apache.org/"
+  labels:
+    - java
+    - sling
+    - maven

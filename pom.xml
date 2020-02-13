@@ -26,15 +26,15 @@
 
     <name>Apache Sling Kickstart Launcher</name>
     <description>
-        An Executable JAR file to launch Sling
+        Creates an Executable JAR file to launch Sling Feature Model Project
     </description>
 
-    <!--    <scm>-->
-    <!--        <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-feature-starter.git</connection>-->
-    <!--        <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-feature-starter.git</developerConnection>-->
-    <!--        <url>https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-feature-starter.git</url>-->
-    <!--        <tag>HEAD</tag>-->
-    <!--    </scm>-->
+    <scm>
+        <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-kickstart.git</connection>
+        <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-kickstart.git</developerConnection>
+        <url>https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-kickstart.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <properties>
         <sling.java.version>8</sling.java.version>
@@ -164,16 +164,6 @@
                             <goal>start</goal>
                         </goals>
                     </execution>
-<!--                    <execution>-->
-<!--                        <id>stop-container-after-IT</id>-->
-<!--                        <goals>-->
-<!--                            <goal>stop</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            &lt;!&ndash; Let the Test Server run to manually verify the setup. TODO: remove later &ndash;&gt;-->
-<!--                            <shouldBlockUntilKeyIsPressed>${block.sling.at.the.end}</shouldBlockUntilKeyIsPressed>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
                 </executions>
                 <configuration>
                     <launchpadJar>${project.build.directory}/${project.artifactId}-${project.version}.jar</launchpadJar>
