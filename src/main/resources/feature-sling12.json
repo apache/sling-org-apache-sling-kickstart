@@ -856,9 +856,6 @@
       "jaas.classname":"org.apache.jackrabbit.oak.security.authentication.token.TokenLoginModule",
       "jaas.ranking:Integer":"200"
     },
-    "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService":{
-      "name":"Default NodeStore"
-    },
     "org.apache.sling.scripting.core.impl.ScriptCacheImpl":{
       "org.apache.sling.scripting.cache.additional_extensions":[
         "js"
