@@ -2,13 +2,12 @@
 
 This project is the Feature Model based version of the **sling-org-apache-sling-starter**
 module and creates an executable JAR file (for now).
-It is also a test case for the Sling KickstartMaven Plugin as it uses it
+It is also a test case for the Sling Kickstart Maven Plugin as it uses it
 to launch a Launchpad Ready Rule and Smoke tests.
 
 ## Build
 
-This plugin depends on the **Sling Start Feature Maven Plugin** (also in the Sling
-Whiteboard) which is then used to run the IT tests:
+This plugin depends on the **Sling Kickstart Maven Plugin** which is then used to run the IT tests:
 
 1. Go to **sling-kickstart-maven-plugin** module
 2. Build with: `mvn clean install`
@@ -18,12 +17,45 @@ Whiteboard) which is then used to run the IT tests:
    kept running after the end of the IT tests by providing the property
    **block.sling.at.the.end** with the value **true**
 
+## Update to the Latest Sling
+
+This project ships with a Sling 12 Feature Model that is pretty soon outdated
+and will only be updated on the next release.
+That said this project contains the means to update that file if you need to do so:
+
+1. Checkout the **Sling Starter Project** (sling-org-apache-sling-starter
+2. Run the **sling-fm-pom.xml** build with the sling starter path as property
+```
+mvn -f sling-fm-pom.xml clean package -Dsling.starter.folder=<path to the sling starter folder>
+```
+3. Copy the Sling12 Feature File: **target/slingfeature-tmp/feature-sling12.json** into the
+**src/main/resources** folder replacing the old one
+4. Build the Kickstart project (see above in **Build**) and then run it (see below in **Usage**)
+
 ## Usage
 
-After the resulting jar file **org.apache.sling.feature.starter-<version>.jar**
+After the resulting jar file **org.apache.sling.kickstart--<version>.jar**
 can be executed with:
 ```
-java -jar org.apache.sling.feature.starter-<version>.jar ...
+java -jar org.apache.sling.kickstart--<version>.jar ...
+```
+
+### Running as a Service / Background
+
+The kickstart can be started in the background as a service with the 'start'
+command but the starter needs to be put into the background:
+```
+java -jar org.apache.sling.kickstart--<version>.jar start <optional options> &
+```
+
+The status of the service then can be retrieved by using the 'status' command:
+```
+java -jar org.apache.sling.kickstart--<version>.jar status
+```
+
+To shutdown the service use the 'stop' command:
+```
+java -jar org.apache.sling.kickstart--<version>.jar stop
 ```
 
 ### Parameters
@@ -76,7 +108,7 @@ Apache Sling Kickstart
 Copyright(c) 2020 The Apache Software Foundation.
 ```
 
-These are the additional parameters:
+These are two additional parameters:
 
 **-s**: this takes a path to a Feature Model (FM) that replaces the provided
 Sling Feature Module. With it it is possible to provide your own Sling FM

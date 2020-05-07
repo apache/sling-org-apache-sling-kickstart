@@ -118,7 +118,7 @@ public class SmokeIT {
                     StringBuilder out = new StringBuilder();
                     out.append("Expected all bundles to be active, but instead got ")
                         .append(bs.resolvedBundles).append(" resolved bundles, ")
-                        .append(bs.installedBundles).append(" installed bundlles: ");
+                        .append(bs.installedBundles).append(" installed bundles: ");
 
                     for ( int i = 0 ; i < bundles.size(); i++ ) {
                         @SuppressWarnings("unchecked")
