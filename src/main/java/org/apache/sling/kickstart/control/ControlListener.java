@@ -49,10 +49,10 @@ import java.util.Set;
  * class implements the client and server sides of a TCP/IP based communication
  * channel to control a running Sling application.
  * <p>
- * The server side listens for commands on a configurable host and port &endash;
- * <code>localhost:63000</code> by default &endash; supporting the following
+ * The server side listens for commands on a configurable host and port
+ * <code>localhost:63000</code> by default supporting the following
  * commands:
- * <table>
+ * <table summary="">
  * <tr>
  * <th>Command</th>
  * <th>Description</th>
@@ -125,6 +125,8 @@ public class ControlListener implements Runnable {
     /**
      * Implements the server side of the control connection starting a thread
      * listening on the host and port configured on setup of this instance.
+     *
+     * @return True if launched successfully
      */
     public boolean listen() {
         final File configFile = getConfigFile();
@@ -145,6 +147,8 @@ public class ControlListener implements Runnable {
     /**
      * Implements the client side of the control connection sending the command
      * to shutdown Sling.
+     *
+     * @return Command Execution Return Code for Stop
      */
     public int shutdownServer() {
         return sendCommand(COMMAND_STOP);
@@ -153,6 +157,8 @@ public class ControlListener implements Runnable {
     /**
      * Implements the client side of the control connection sending the command
      * to check whether Sling is active.
+     *
+     * @return Command Execution Return Code for Status
      */
     public int statusServer() {
         return sendCommand(COMMAND_STATUS);
@@ -161,6 +167,8 @@ public class ControlListener implements Runnable {
     /**
      * Implements the client side of the control connection sending the command
      * to retrieve a thread dump.
+     *
+     * @return Command Execution Return Code for Threads
      */
     public int dumpThreads() {
         return sendCommand(COMMAND_THREADS);
