@@ -20,7 +20,7 @@ package org.apache.sling.kickstart.control;
 
 /**
  * The <code>ControlAction</code> defines values to used as the action for the
- * Feature Launcher control with the {@link Main#doControlAction()} method.
+ * Feature Launcher control with the "org.apache.sling.kickstart.app.KickstartStarter#doControlAction()" method.
  */
 public enum ControlAction {
 

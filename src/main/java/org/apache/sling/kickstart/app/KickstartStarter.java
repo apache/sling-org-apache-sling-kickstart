@@ -37,11 +37,11 @@ import picocli.CommandLine.Parameters;
 
 
 @Command(
-    name = "java -jar <Sling Kickstarter JAR File>",
+    name = "java -jar <Sling Kickstart JAR File>",
     description = "Apache Sling Kickstart",
     footer = "Copyright(c) 2020 The Apache Software Foundation."
 )
-public class SlingStarter implements Runnable, ControlTarget {
+public class KickstartStarter implements Runnable, ControlTarget {
 
     @Option(names = { "-s", "--mainFeature" }, description = "main feature file (file path or URL) replacing the provided Sling Feature File", required = false)
     private String mainFeatureFile;
@@ -137,6 +137,8 @@ public class SlingStarter implements Runnable, ControlTarget {
      */
     private static final String PROP_SHUTDOWN_HOOK = "sling.shutdown.hook";
 
+    private static final String FEATURE_ARCHIVE_EXTENSION = "far";
+
     private boolean started = false;
 
     @Override
@@ -226,7 +228,7 @@ public class SlingStarter implements Runnable, ControlTarget {
     }
 
     public static void main(String[] args) {
-        CommandLine.run(new SlingStarter(), args);
+        CommandLine.run(new KickstartStarter(), args);
     }
 
     private int doControlAction(ControlAction controlAction, String controlAddress) {
