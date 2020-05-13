@@ -10,5 +10,5 @@ sleep 3
 
 rm -rf launcher
 rm -rf sling
-java -jar target/org.apache.sling.kickstart-0.0.1-SNAPSHOT.jar -af src/main/resources/feature-two-headed-seed.json -c sling/sling-composite
+java -jar target/org.apache.sling.kickstart-0.0.3-SNAPSHOT.jar -af src/main/resources/feature-two-headed-seed.json -c sling/sling-composite
 

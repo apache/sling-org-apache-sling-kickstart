@@ -6,5 +6,5 @@ cd sling/sling-composite/repository-libs
 ln -s segmentstore segmentstore-composite-mount-libs
 cd ../../..
 
-java -jar target/org.apache.sling.kickstart-0.0.1-SNAPSHOT.jar -af src/main/resources/feature-two-headed-runtime.json -c sling/sling-composite
+java -jar target/org.apache.sling.kickstart-0.0.3-SNAPSHOT.jar -af src/main/resources/feature-two-headed-runtime.json -c sling/sling-composite
 
