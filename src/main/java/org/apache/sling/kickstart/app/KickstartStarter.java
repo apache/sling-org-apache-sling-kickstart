@@ -17,6 +17,8 @@
 package org.apache.sling.kickstart.app;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -42,6 +44,16 @@ import picocli.CommandLine.Parameters;
     footer = "Copyright(c) 2020 The Apache Software Foundation."
 )
 public class KickstartStarter implements Runnable, ControlTarget {
+
+    private static final String LOG_CONFIGURATION_FM =
+        "{\n" +
+            "    \"id\":\"org.apache.sling:kickstart.config:slingosgifeature:kickstart-config:1\",\n" +
+            "    \"configurations\":  {\n" +
+            "      \"org.apache.sling.commons.log.LogManager\":    {\n" +
+            "%s\n" +
+            "      }\n" +
+            "    }\n" +
+            "  }";
 
     @Option(names = { "-s", "--mainFeature" }, description = "main feature file (file path or URL) replacing the provided Sling Feature File", required = false)
     private String mainFeatureFile;
@@ -102,11 +114,11 @@ public class KickstartStarter implements Runnable, ControlTarget {
      */
     protected static final String PROP_CONTROL_SOCKET = "sling.control.socket";
 
-    /** The Sling configuration property name setting the initial log level */
-    private static final String PROP_LOG_LEVEL = "org.apache.sling.commons.log.level";
-
-    /** The Sling configuration property name setting the initial log file */
-    private static final String PROP_LOG_FILE = "org.apache.sling.commons.log.file";
+//    /** The Sling configuration property name setting the initial log level */
+//    private static final String PROP_LOG_LEVEL = "org.apache.sling.commons.log.level";
+//
+//    /** The Sling configuration property name setting the initial log file */
+//    private static final String PROP_LOG_FILE = "org.apache.sling.commons.log.file";
 
     /**
      * The configuration property setting the port on which the HTTP service
@@ -160,11 +172,29 @@ public class KickstartStarter implements Runnable, ControlTarget {
                     }
                 }
             }
-            if(StringUtils.isNotEmpty(logLevel)) {
-                addArgument(argumentList, PROP_LOG_LEVEL, logLevel);
-            }
-            if(StringUtils.isNotEmpty(logFile)) {
-                addArgument(argumentList, PROP_LOG_FILE, logFile);
+            // Log File and Level must be configured through a Feature Model snippet and then
+            // the configuration override must be set
+            boolean hasLogLevel = StringUtils.isNotEmpty(logLevel);
+            boolean hasLogFile = StringUtils.isNotEmpty(logFile);
+            if(hasLogLevel || hasLogFile) {
+                String addition = "";
+                if(hasLogLevel) {
+                    addition += "\"org.apache.sling.commons.log.level\":\"" + logLevel + "\"" + (hasLogFile ? ", " : "") + "\n";
+                }
+                if(hasLogFile) {
+                    addition += "\"org.apache.sling.commons.log.file\":\"" + logFile + "\"\n";
+                }
+                String configFile = String.format(LOG_CONFIGURATION_FM, addition);
+                // Write to temporary file and add link to arguments list including Configuration Class Override
+                File temp = File.createTempFile("sling", ".json");
+                FileWriter writer = new FileWriter(temp);
+                writer.write(configFile);
+                writer.close();
+                URL tempUrl = temp.toURI().toURL();
+                argumentList.add("-f");
+                argumentList.add(tempUrl.toString());
+                argumentList.add("-CC");
+                argumentList.add("\"org.apache.sling.commons.log.LogManager=MERGE_LATEST\"");
             }
             if(StringUtils.isNotEmpty(port)) {
                 addArgument(argumentList, PROP_PORT, port);

@@ -20,11 +20,11 @@ package org.apache.sling.kickstart.control;
 
 public interface ControlTarget {
 
-    public String getHome();
+    String getHome();
 
-    public void doStop();
+    void doStop();
 
-    public void doTerminateVM(int status);
+    void doTerminateVM(int status);
 
     void info(String message, Throwable t);
 
