@@ -134,6 +134,7 @@
                         <exclude>src/main/resources/META-INF/services/**</exclude>
                         <exclude>**/*.properties</exclude>
                         <exclude>launcher/**</exclude>
+                        <exclude>bin/**.sh</exclude>
                     </excludes>
                 </configuration>
             </plugin>
@@ -211,6 +212,7 @@
                         <excludes combine.children="append">
                             <!-- Exclude sling instance -->
                             <exclude>sling/**</exclude>
+                            <exclude>*.sh</exclude>
                         </excludes>
                     </configuration>
                 </plugin>

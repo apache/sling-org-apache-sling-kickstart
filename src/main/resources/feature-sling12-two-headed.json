@@ -1,7 +1,7 @@
 {
   "id":"org.apache.sling:org.apache.sling.kickstart.conversion:slingosgifeature:sling12:0.0.1-SNAPSHOT",
-  "title":"Sling 12 Feature Model",
-  "description":"Complete Sling 12 Feature Model",
+  "title":"Sling 12 Feature Model for Composite Nodestore",
+  "description":"Complete Sling 12 Feature Model w/o Default Node Store",
   "vendor":"The Apache Software Foundation",
   "license":"Apache License, Version 2.0",
   "variables":{
@@ -1053,9 +1053,6 @@
       "jaas.controlFlag":"sufficient",
       "jaas.classname":"org.apache.jackrabbit.oak.security.authentication.token.TokenLoginModule",
       "jaas.ranking:Integer":200
-    },
-    "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService":    {
-      "name":"Default NodeStore"
     },
     "org.apache.sling.scripting.core.impl.ScriptCacheImpl":    {
       "org.apache.sling.scripting.cache.additional_extensions":[

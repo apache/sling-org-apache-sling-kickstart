@@ -97,6 +97,9 @@ Apache Sling Kickstart
   -l, --logLevel=<logLevel> the initial loglevel (0..4, FATAL, ERROR, WARN, INFO,
                               DEBUG)
   -n, --noShutdownHook      don't install the shutdown hook
+  -O, --overrides=<overrides>
+                            Overrides in format <type>=<value>, type: C = artifact,
+                              CC = config, V = variable
   -p, --port=<port>         the port to listen to (default 8080)
   -r, --context=<contextPath>
                             the root servlet context path for the http service
@@ -117,3 +120,42 @@ which may or may not contain your own project FMs.
 **-af**: each parameter will have a path to a Feature Model (FM) that is
 added to the provided Sling FM (or its override). To add multiple FMs just
 use multiple *-af* parameter lines.
+
+### Composite Node Store
+
+The Kickstart project also comes with the Feature Models and the scripts to run
+a Sling Composite Node Store as well having the option to upgrade a Sling instance
+afterwards.
+
+#### Feature Models
+
+The Sling Feature Model of the Composite Node Store needs to have the Default Node
+Store removed which is available here: **src/main/resources/feature-sling12-two-headed.json**.
+Then we have to additional Feature Models:
+* feature-two-headed-seed.json: The setup to seed the initial **Libs** node store
+which will be later the **read-only** node store
+* feature-two-headed-runtime.json: This will create the Sling Instance with the composite
+node store
+
+#### Scripts
+
+There are two sets of two scripts available in the **bin** folder:
+
+* create_seed_fm.sh: creates the Seed Sling instance
+* run_composite_fm.sh: launches the Sling instance with a composite node store where **libs**
+is read-only
+* create_updated_seed_fm.sh: creates an update Seed Sling Instance
+* run_updated_composite_fm.sh: launches the Sling Instance with a composite node store
+which the updates available
+
+**Note**: the first two scripts support optionally additional features. Just add the path to the
+feature model file or feature archive as parameters to the script and they will be added when
+launched. It is important that both scripts get the same arguments, though.
+The last two scripts requires at least one additional feature as an update only makes sense
+when there is something to be updated.
+
+Example:
+```
+    ./bin/create_seed_fm.sh my-project-fm.json another-project.json
+    ./bin/run_composite_fm.sh my-project-fm.json another-project.json
+```

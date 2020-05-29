@@ -61,6 +61,9 @@ public class KickstartStarter implements Runnable, ControlTarget {
     @Option(names = { "-af", "--additionalFeature" }, description = "additional feature files", required = false)
     private List<String> additionalFeatureFile;
 
+    @Option(names = { "-O", "--overrides" }, description = "Overrides in format <type>=<value>, type: C = artifact, CC = config, V = variable", required = false)
+    private List<String> overrides;
+
     @Option(names = { "-j", "--control" }, description = "host and port to use for control connection in the format '[host:]port' (default 127.0.0.1:0)", required = false)
     private String controlAddress;
 
@@ -113,12 +116,6 @@ public class KickstartStarter implements Runnable, ControlTarget {
      * or a host name (or IP address) and port number separated by a colon.
      */
     protected static final String PROP_CONTROL_SOCKET = "sling.control.socket";
-
-//    /** The Sling configuration property name setting the initial log level */
-//    private static final String PROP_LOG_LEVEL = "org.apache.sling.commons.log.level";
-//
-//    /** The Sling configuration property name setting the initial log file */
-//    private static final String PROP_LOG_FILE = "org.apache.sling.commons.log.file";
 
     /**
      * The configuration property setting the port on which the HTTP service
@@ -195,6 +192,20 @@ public class KickstartStarter implements Runnable, ControlTarget {
                 argumentList.add(tempUrl.toString());
                 argumentList.add("-CC");
                 argumentList.add("\"org.apache.sling.commons.log.LogManager=MERGE_LATEST\"");
+            }
+            if(overrides != null) {
+                for (String override : overrides) {
+                    int index = override.indexOf('=');
+                    if (index > 0 && index < (override.length() - 1)) {
+                        String type = override.substring(0, index);
+                        String value = override.substring(index + 1);
+                        //TODO: Check the type like 'CC' to avoid wrong types
+                        argumentList.add('-' + type);
+                        argumentList.add(value);
+                    } else {
+                        System.out.println("Wrong Override format: " + override + " -> ignored");
+                    }
+                }
             }
             if(StringUtils.isNotEmpty(port)) {
                 addArgument(argumentList, PROP_PORT, port);
