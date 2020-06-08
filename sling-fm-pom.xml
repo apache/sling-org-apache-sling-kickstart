@@ -25,7 +25,7 @@ under the License.
         <relativePath />
     </parent>
 
-    <artifactId>org.apache.sling.kickstart.conversion</artifactId>
+     <artifactId>org.apache.sling.kickstart.conversion</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Sling Kickstart Conversion</name>
     <description>Complete Sling 12 Feature Model</description>
