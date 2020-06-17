@@ -1,0 +1,79 @@
+{
+  "id": "org.apache.sling:org.apache.sling.kickstart:slingosgifeature:two-headed:0.0.3-SNAPSHOT",
+  "configurations": {
+    "org.apache.jackrabbit.oak.segment.SegmentNodeStoreService":    {
+      "name":"Default NodeStore",
+      "standby": true
+    },
+    "org.apache.sling.commons.log.LogManager.factory.config~oak.log": {
+      "org.apache.sling.commons.log.pattern": "%-4r [%t] %-5p %c %x - %m%n",
+      "org.apache.sling.commons.log.names": [
+        "org.apache.jackrabbit.oak"
+      ],
+      "org.apache.sling.commons.log.level": "debug",
+      "org.apache.sling.commons.log.file": "logs/oak.log"
+    },
+
+    "org.apache.sling.commons.log.LogManager.factory.config~composum.log": {
+      "org.apache.sling.commons.log.pattern": "%-4r [%t] %-5p %c %x - %m%n",
+      "org.apache.sling.commons.log.names": [
+        "com.composum.core",
+        "com.composum.sling"
+      ],
+      "org.apache.sling.commons.log.level": "debug",
+      "org.apache.sling.commons.log.file": "logs/composum.log"
+    },
+
+    "org.apache.jackrabbit.oak.composite.CompositeNodeStoreService": {
+      "seedMount": "libs",
+      "enabled": true,
+      "enableChecks": false,
+      "partialReadOnly": true
+    },
+
+    "org.apache.jackrabbit.oak.composite.CrossMountReferenceValidatorProvider": {
+      "failOnDetection": true
+    },
+
+    "org.apache.jackrabbit.oak.composite.MountInfoProviderService": {
+      "mountName": "libs",
+      "readOnlyMount": true,
+      "pathsSupportingFragments": [
+        "/oak:index/*$"
+      ],
+      "mountedPaths": [
+        "/libs",
+        "/apps",
+        "/jcr:system/rep:permissionStore/oak:mount-libs-default"
+      ]
+    },
+
+    "org.apache.jackrabbit.oak.composite.checks.NodeTypeMountedNodeStoreChecker~referenceable": {
+      "errorLabel": "referenceable node",
+      "invalidNodeType": "mix:referenceable",
+      "excludedNodeTypes": [
+        "nt:resource"
+      ]
+    },
+
+    "org.apache.jackrabbit.oak.composite.checks.NodeTypeMountedNodeStoreChecker~versionable": {
+      "errorLabel": "versionable node",
+      "invalidNodeType": "mix:versionable"
+    },
+
+    "org.apache.jackrabbit.oak.segment.SegmentNodeStoreFactory~libs": {
+      "role": "composite-mount-libs",
+      "customBlobStore": false,
+      "nodeDeduplicationCache.size": 0,
+      "repository.home": "sling/sling-composite/repository-libs"
+    },
+
+    "org.apache.jackrabbit.oak.segment.SegmentNodeStoreFactory~global": {
+      "service.ranking": 100,
+      "role": "composite-global",
+      "registerDescriptors": true,
+      "dispatchChanges": true,
+      "repository.home": "sling/sling-composite/repository-global"
+    }
+  }
+}

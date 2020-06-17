@@ -155,7 +155,7 @@ public class KickstartStarter implements Runnable, ControlTarget {
         try {
             URL mainFeatureURL = checkFeatureFile(mainFeatureFile);
             if(mainFeatureURL == null) {
-                mainFeatureURL = getClass().getResource("/feature-sling12.json");
+                mainFeatureURL = getClass().getResource("/standalone/far/org.apache.sling.kickstart-0.0.3-SNAPSHOT-sling12far.far");
             }
             List<String> argumentList = new ArrayList<>();
             argumentList.add("-f");
