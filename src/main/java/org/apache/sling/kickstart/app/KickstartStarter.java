@@ -58,6 +58,9 @@ public class KickstartStarter implements Runnable, ControlTarget {
     @Option(names = { "-s", "--mainFeature" }, description = "main feature file (file path or URL) replacing the provided Sling Feature File", required = false)
     private String mainFeatureFile;
 
+    @Option(names = { "-m", "--nofar" }, description = "Do not use Sling FAR (if no Main Feature was provided) and use FM instead")
+    private boolean nofar;
+
     @Option(names = { "-af", "--additionalFeature" }, description = "additional feature files", required = false)
     private List<String> additionalFeatureFile;
 
@@ -73,12 +76,8 @@ public class KickstartStarter implements Runnable, ControlTarget {
     @Option(names = { "-f", "--logFile" }, description = "the log file, \"-\" for stdout (default logs/error.log)", required = false)
     private String logFile;
 
-    @Option(names = { "-c", "--slingHome" }, description = "the sling context directory (default sling)", required = false)
+    @Option(names = { "-c", "--slingHome" }, description = "the sling context directory (default launcher)", required = false)
     private String slingHome;
-
-    //AS TODO: does this still apply here
-    @Option(names = { "-i", "--launcherHome" }, description = "the launcher home directory (default launcher)", required = false)
-    private String launcherHome;
 
     @Option(names = { "-a", "--address" }, description = "the interface to bind to (use 0.0.0.0 for any)", required = false)
     private String address;
@@ -105,18 +104,6 @@ public class KickstartStarter implements Runnable, ControlTarget {
     @Parameters(paramLabel = "COMMAND", description = "Optional Command for Server Instance Interaction, can be one of: 'start', 'stop', 'status' or 'threads'", arity = "0..1")
     private String command;
 
-    // The name of the environment variable to consult to find out
-    // about sling.home
-    private static final String ENV_SLING_HOME = "SLING_HOME";
-
-    /**
-     * The name of the configuration property indicating the socket to use for
-     * the control connection. The value of this property is either just a port
-     * number (in which case the host is assumed to be <code>localhost</code>)
-     * or a host name (or IP address) and port number separated by a colon.
-     */
-    protected static final String PROP_CONTROL_SOCKET = "sling.control.socket";
-
     /**
      * The configuration property setting the port on which the HTTP service
      * listens
@@ -134,19 +121,11 @@ public class KickstartStarter implements Runnable, ControlTarget {
      */
     private static final String PROP_HOST = "org.apache.felix.http.host";
 
-    /**
-     * Name of the configuration property (or system property) indicating
-     * whether the shutdown hook should be installed or not. If this property is
-     * not set or set to {@code true} (case insensitive), the shutdown hook
-     * properly shutting down the framework is installed on startup. Otherwise,
-     * if this property is set to any value other than {@code true} (case
-     * insensitive) the shutdown hook is not installed.
-     * <p>
-     * The respective command line option is {@code -n}.
-     */
-    private static final String PROP_SHUTDOWN_HOOK = "sling.shutdown.hook";
+    /** Path to default Sling Feature Model file **/
+    private static final String DEFAULT_SLING_FEATURE_MODEL_FILE_PATH = "/standalone/fm/feature-sling12.json";
 
-    private static final String FEATURE_ARCHIVE_EXTENSION = "far";
+    /** Path to default Sling Feature Model feature archive **/
+    private static final String DEFAULT_SLING_FEATURE_ARCHIVE_PATH = "/standalone/far/org.apache.sling.kickstart.far";
 
     private boolean started = false;
 
@@ -155,7 +134,11 @@ public class KickstartStarter implements Runnable, ControlTarget {
         try {
             URL mainFeatureURL = checkFeatureFile(mainFeatureFile);
             if(mainFeatureURL == null) {
-                mainFeatureURL = getClass().getResource("/standalone/far/org.apache.sling.kickstart-0.0.3-SNAPSHOT-sling12far.far");
+                if(nofar) {
+                    mainFeatureURL = getClass().getResource(DEFAULT_SLING_FEATURE_MODEL_FILE_PATH);
+                } else {
+                    mainFeatureURL = getClass().getResource(DEFAULT_SLING_FEATURE_ARCHIVE_PATH);
+                }
             }
             List<String> argumentList = new ArrayList<>();
             argumentList.add("-f");
@@ -215,6 +198,12 @@ public class KickstartStarter implements Runnable, ControlTarget {
             }
             if(StringUtils.isNotEmpty(contextPath)) {
                 addArgument(argumentList, PROP_CONTEXT_PATH, contextPath);
+            }
+            if(StringUtils.isNotEmpty(slingHome)) {
+                argumentList.add("-p");
+                argumentList.add(slingHome);
+                argumentList.add("-c");
+                argumentList.add(slingHome + "/cache");
             }
             if(verbose) {
                 argumentList.add("-v");

@@ -4,6 +4,8 @@ This project is the Feature Model based version of the **sling-org-apache-sling-
 module and creates an executable JAR file (for now).
 It is also a test case for the Sling Kickstart Maven Plugin as it uses it
 to launch a Launchpad Ready Rule and Smoke tests.
+The Kickstart is using an embedded Sling Feature Archive to launch Sling and so the
+Kicstart can be started w/o having access to the internet.
 
 ## Build
 
@@ -26,11 +28,14 @@ That said this project contains the means to update that file if you need to do 
 1. Checkout the **Sling Starter Project** (sling-org-apache-sling-starter
 2. Run the **sling-fm-pom.xml** build with the sling starter path as property
 ```
-mvn -f sling-fm-pom.xml clean package -Dsling.starter.folder=<path to the sling starter folder>
+mvn -f sling-fm-pom.xml clean package -Dsling.starter.folder=<path to the sling starter folder> -P create-far
 ```
 3. Copy the Sling12 Feature File: **target/slingfeature-tmp/feature-sling12.json** into the
-**src/main/resources** folder replacing the old one
-4. Build the Kickstart project (see above in **Build**) and then run it (see below in **Usage**)
+**src/main/resources/standalone/fm** folder replacing the old one
+4. Copy the Sling12 Feature File: **target/org.apache.sling.kickstart-\*.far** into the
+**src/main/resources/standalone/far** folder replacing the old one by renaming it to
+**org.apache.sling.kickstart.far**.
+5. Build the Kickstart project (see above in **Build**) and then run it (see below in **Usage**)
 
 ## Usage
 
@@ -65,16 +70,16 @@ the for the Sling Starater. To checkout the usage of the parameters you
 can use the **help** parameter when starting the kickstarter JAR file:
 
 ```
-java -jar org.apache.sling.kickstart-0.0.1-SNAPSHOT.jar -h
-Usage: java -jar <Sling Kickstarter JAR File> [-hnv] [-a=<address>]
-                                              [-c=<slingHome>] [-f=<logFile>]
-                                              [-i=<launcherHome>]
-                                              [-j=<controlAddress>]
-                                              [-l=<logLevel>] [-p=<port>]
-                                              [-r=<contextPath>]
-                                              [-s=<mainFeatureFile>]
-                                              [-af=<additionalFeatureFile>]...
-                                              [-D=<String=String>]... [COMMAND]
+java -jar org.apache.sling.kickstart-0.0.4.jar -h
+Usage: java -jar <Sling Kickstart JAR File> [-hmnv] [-a=<address>]
+                                            [-c=<slingHome>] [-f=<logFile>]
+                                            [-j=<controlAddress>]
+                                            [-l=<logLevel>] [-p=<port>]
+                                            [-r=<contextPath>]
+                                            [-s=<mainFeatureFile>]
+                                            [-af=<additionalFeatureFile>]...
+                                            [-D=<String=String>]...
+                                            [-O=<overrides>]... [COMMAND]
 Apache Sling Kickstart
       [COMMAND]             Optional Command for Server Instance Interaction, can be
                               one of: 'start', 'stop', 'status' or 'threads'
@@ -82,20 +87,20 @@ Apache Sling Kickstart
       -af, --additionalFeature=<additionalFeatureFile>
                             additional feature files
   -c, --slingHome=<slingHome>
-                            the sling context directory (default sling)
+                            the sling context directory (default launcher)
   -D, --define=<String=String>
                             sets property n to value v. Make sure to use this option
                               *after* the jar filename. The JVM also has a -D option
                               which has a different meaning
   -f, --logFile=<logFile>   the log file, "-" for stdout (default logs/error.log)
   -h, --help                Display the usage message.
-  -i, --launcherHome=<launcherHome>
-                            the launcher home directory (default launcher)
   -j, --control=<controlAddress>
                             host and port to use for control connection in the
                               format '[host:]port' (default 127.0.0.1:0)
   -l, --logLevel=<logLevel> the initial loglevel (0..4, FATAL, ERROR, WARN, INFO,
                               DEBUG)
+  -m, --nofar               Do not use Sling FAR (if no Main Feature was provided)
+                              and use FM instead
   -n, --noShutdownHook      don't install the shutdown hook
   -O, --overrides=<overrides>
                             Overrides in format <type>=<value>, type: C = artifact,
@@ -120,6 +125,10 @@ which may or may not contain your own project FMs.
 **-af**: each parameter will have a path to a Feature Model (FM) that is
 added to the provided Sling FM (or its override). To add multiple FMs just
 use multiple *-af* parameter lines.
+
+**-m/--nofar**: do not use the embedded Sling Feature Archive and use the
+plain Sling Feature Model. This will greatly increase the launch performance
+if most of the dependencies are already in the local Maven repository.
 
 ### Composite Node Store
 
