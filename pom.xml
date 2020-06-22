@@ -218,6 +218,15 @@
                         </excludes>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>animal-sniffer-maven-plugin</artifactId>
+                    <version>1.18</version>
+                    <configuration>
+                        <!-- The animal sniffer fails regarding: org.codehaus.mojo.signature:java18:1.0 -->
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
