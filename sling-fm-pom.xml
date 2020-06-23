@@ -26,7 +26,7 @@ under the License.
     </parent>
 
     <artifactId>org.apache.sling.kickstart</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5-SNAPSHOT</version>
     <name>Sling Kickstart Conversion</name>
     <description>Complete Sling 12 Feature Model</description>
     <packaging>slingosgifeature</packaging>

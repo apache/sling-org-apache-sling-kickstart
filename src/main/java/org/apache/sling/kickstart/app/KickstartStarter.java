@@ -61,6 +61,9 @@ public class KickstartStarter implements Runnable, ControlTarget {
     @Option(names = { "-m", "--nofar" }, description = "Do not use Sling FAR (if no Main Feature was provided) and use FM instead")
     private boolean nofar;
 
+    @Option(names = { "-S", "--nofm" }, description = "Do not use Sling Feature Archive or Model file")
+    private boolean nofm;
+
     @Option(names = { "-af", "--additionalFeature" }, description = "additional feature files", required = false)
     private List<String> additionalFeatureFile;
 
@@ -122,10 +125,10 @@ public class KickstartStarter implements Runnable, ControlTarget {
     private static final String PROP_HOST = "org.apache.felix.http.host";
 
     /** Path to default Sling Feature Model file **/
-    private static final String DEFAULT_SLING_FEATURE_MODEL_FILE_PATH = "/standalone/fm/feature-sling12.json";
+    private static final String DEFAULT_SLING_FEATURE_MODEL_FILE_PATH = "/standalone/feature-sling12.json";
 
     /** Path to default Sling Feature Model feature archive **/
-    private static final String DEFAULT_SLING_FEATURE_ARCHIVE_PATH = "/standalone/far/org.apache.sling.kickstart.far";
+    private static final String DEFAULT_SLING_FEATURE_ARCHIVE_PATH = "/org.apache.sling.kickstart.far";
 
     private boolean started = false;
 
@@ -133,12 +136,16 @@ public class KickstartStarter implements Runnable, ControlTarget {
     public void run() {
         try {
             URL mainFeatureURL = checkFeatureFile(mainFeatureFile);
-            if(mainFeatureURL == null) {
+            if(mainFeatureURL == null && !nofm) {
                 if(nofar) {
                     mainFeatureURL = getClass().getResource(DEFAULT_SLING_FEATURE_MODEL_FILE_PATH);
                 } else {
                     mainFeatureURL = getClass().getResource(DEFAULT_SLING_FEATURE_ARCHIVE_PATH);
                 }
+            }
+            if(mainFeatureURL == null && (additionalFeatureFile == null || additionalFeatureFile.isEmpty())) {
+                error("Abort: No Feature(s) Provided", null);
+                return;
             }
             List<String> argumentList = new ArrayList<>();
             argumentList.add("-f");

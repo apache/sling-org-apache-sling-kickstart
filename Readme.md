@@ -70,7 +70,7 @@ the for the Sling Starater. To checkout the usage of the parameters you
 can use the **help** parameter when starting the kickstarter JAR file:
 
 ```
-java -jar org.apache.sling.kickstart-0.0.4.jar -h
+java -jar org.apache.sling.kickstart-0.0.5-SNAPSHOT.jar -h
 Usage: java -jar <Sling Kickstart JAR File> [-hmnv] [-a=<address>]
                                             [-c=<slingHome>] [-f=<logFile>]
                                             [-j=<controlAddress>]
