@@ -39,7 +39,7 @@
     <properties>
         <sling.java.version>8</sling.java.version>
 
-        <sling-kickstart-maven-plugin.version>0.0.5-SNAPSHOT</sling-kickstart-maven-plugin.version>
+        <sling-kickstart-maven-plugin.version>0.0.6</sling-kickstart-maven-plugin.version>
         <slingfeature-maven-plugin.version>1.3.4</slingfeature-maven-plugin.version>
 
         <picocli.version>3.9.6</picocli.version>

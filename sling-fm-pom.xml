@@ -26,7 +26,7 @@ under the License.
     </parent>
 
     <artifactId>org.apache.sling.kickstart</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.6</version>
     <name>Sling Kickstart Conversion</name>
     <description>Complete Sling 12 Feature Model</description>
     <packaging>slingosgifeature</packaging>
@@ -148,40 +148,40 @@ under the License.
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>create-far</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.sling</groupId>
-                        <artifactId>slingfeature-maven-plugin</artifactId>
-                        <version>${slingfeature-maven-plugin.version}</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <features>target/fm</features>
-                            <generatedFeatures>${basedir}/target/fm</generatedFeatures>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>create-sling-feature-archives</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>attach-featurearchives</goal>
-                                </goals>
-                                <configuration>
-                                    <archives>
-                                        <archive>
-                                            <classifier>sling12far</classifier>
-                                            <includeClassifier>sling12</includeClassifier>
-                                        </archive>
-                                    </archives>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>create-far</id>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.sling</groupId>-->
+<!--                        <artifactId>slingfeature-maven-plugin</artifactId>-->
+<!--                        <version>${slingfeature-maven-plugin.version}</version>-->
+<!--                        <extensions>true</extensions>-->
+<!--                        <configuration>-->
+<!--                            <features>target/fm</features>-->
+<!--                            <generatedFeatures>${basedir}/target/fm</generatedFeatures>-->
+<!--                        </configuration>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>create-sling-feature-archives</id>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>attach-featurearchives</goal>-->
+<!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <archives>-->
+<!--                                        <archive>-->
+<!--                                            <classifier>sling12far</classifier>-->
+<!--                                            <includeClassifier>sling12</includeClassifier>-->
+<!--                                        </archive>-->
+<!--                                    </archives>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
+<!--    </profiles>-->
 </project>
