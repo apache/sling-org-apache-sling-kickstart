@@ -21,7 +21,7 @@
     </parent>
 
     <artifactId>org.apache.sling.kickstart</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7-SNAPSHOT</version>
     <packaging>slingkickstart</packaging>
 
     <name>Apache Sling Kickstart Launcher</name>
@@ -33,7 +33,7 @@
         <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-kickstart.git</connection>
         <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-kickstart.git</developerConnection>
         <url>https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-kickstart.git</url>
-        <tag>org.apache.sling.kickstart-0.0.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
