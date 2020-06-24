@@ -174,7 +174,7 @@
                         <id>rename-file</id>
                         <phase>test-compile</phase>
                         <goals>
-                            <goal>rename</goal>
+                            <goal>copy</goal>
                         </goals>
                         <configuration>
                             <sourceFile>${project.build.directory}/${project.artifactId}-${project.version}-sling12far.far</sourceFile>
