@@ -70,8 +70,7 @@ the for the Sling Starater. To checkout the usage of the parameters you
 can use the **help** parameter when starting the kickstarter JAR file:
 
 ```
-java -jar org.apache.sling.kickstart-0.0.5-SNAPSHOT.jar -h
-Usage: java -jar <Sling Kickstart JAR File> [-hmnv] [-a=<address>]
+Usage: java -jar <Sling Kickstart JAR File> [-hmnSv] [-a=<address>]
                                             [-c=<slingHome>] [-f=<logFile>]
                                             [-j=<controlAddress>]
                                             [-l=<logLevel>] [-p=<port>]
@@ -112,11 +111,12 @@ Apache Sling Kickstart
   -s, --mainFeature=<mainFeatureFile>
                             main feature file (file path or URL) replacing the
                               provided Sling Feature File
+  -S, --nofm                Do not use Sling Feature Archive or Model file
   -v, --verbose             the feature launcher is verbose on launch
 Copyright(c) 2020 The Apache Software Foundation.
 ```
 
-These are two additional parameters:
+These are four additional parameters:
 
 **-s**: this takes a path to a Feature Model (FM) that replaces the provided
 Sling Feature Module. With it it is possible to provide your own Sling FM
@@ -129,6 +129,9 @@ use multiple *-af* parameter lines.
 **-m/--nofar**: do not use the embedded Sling Feature Archive and use the
 plain Sling Feature Model. This will greatly increase the launch performance
 if most of the dependencies are already in the local Maven repository.
+
+**-S/--nofm**: do not use the embedded Sling Feature Archive or Model file.
+If no other Feature Module file is provided this launch aborts.
 
 ### Composite Node Store
 

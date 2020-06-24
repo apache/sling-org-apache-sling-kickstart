@@ -144,7 +144,7 @@ public class KickstartStarter implements Runnable, ControlTarget {
                 }
             }
             if(mainFeatureURL == null && (additionalFeatureFile == null || additionalFeatureFile.isEmpty())) {
-                error("Abort: No Feature(s) Provided", null);
+                error("No Feature(s) Provided", null);
                 return;
             }
             List<String> argumentList = new ArrayList<>();
