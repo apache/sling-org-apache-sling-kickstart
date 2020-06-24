@@ -53,9 +53,9 @@ under the License.
                         <configuration>
                             <inputFolder>${sling.starter.folder}/src/main/provisioning</inputFolder>
                             <outputFolder>target/fm</outputFolder>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>${project.artifactId}</artifactId>
-                            <version>${project.version}</version>
+                            <groupId>${{project.groupId}}</groupId>
+                            <artifactId>${{project.artifactId}}</artifactId>
+                            <version>${{project.version}}</version>
                             <frameworkProperties>
                                 launchpad:felix.systempackages.substitution=true,
                                 launchpad:felix.systempackages.calculate.uses=true

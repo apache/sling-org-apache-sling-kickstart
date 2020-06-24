@@ -122,9 +122,31 @@
                 <extensions>true</extensions>
                 <configuration>
                     <features>src/main/resources/standalone</features>
-                    <generatedFeatures>${basedir}/src/main/resources/standalone</generatedFeatures>
                 </configuration>
                 <executions>
+                    <execution>
+                        <id>aggregate-base-sling-feature</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>aggregate-features</goal>
+                        </goals>
+                        <configuration>
+                            <aggregates>
+                                <aggregate>
+                                    <classifier>sling12</classifier>
+                                    <filesInclude>**/*.json</filesInclude>
+                                    <title>Sling 12 Feature Model</title>
+                                </aggregate>
+                            </aggregates>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-feature</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>attach-features</goal>
+                        </goals>
+                    </execution>
                     <execution>
                         <id>create-sling-feature-archives</id>
                         <phase>compile</phase>
@@ -135,7 +157,7 @@
                             <archives>
                                 <archive>
                                     <classifier>sling12far</classifier>
-                                    <filesInclude>feature-sling12.json</filesInclude>
+                                    <includeClassifier>sling12</includeClassifier>
                                 </archive>
                             </archives>
                         </configuration>
