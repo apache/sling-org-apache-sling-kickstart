@@ -1,4 +1,0 @@
-
-{
-    "id":"${project.groupId}:${project.artifactId}:slingfeature:webapp:${project.version}"
-}

@@ -1,6 +1,5 @@
 
 {
-    "id":"${project.groupId}:${project.artifactId}:slingfeature:scripting_sling:${project.version}",
     "bundles":[
         {
             "id":"org.antlr:antlr4-runtime:4.7.2",
@@ -15,7 +14,7 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.core:2.2.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.core:2.3.2",
             "start-order":"20"
         },
         {
@@ -35,23 +34,19 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.jsp:2.4.2",
+            "id":"org.apache.sling:org.apache.sling.scripting.jsp:2.5.0",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.compiler.java:1.1.4-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly.compiler.java:1.2.0-1.4.0",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.compiler:1.2.4-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly.compiler:1.2.6-1.4.0",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.js.provider:1.1.0",
-            "start-order":"20"
-        },
-        {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.models.provider:1.0.10",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly.js.provider:1.2.0",
             "start-order":"20"
         },
         {
@@ -59,11 +54,11 @@
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly.runtime:1.2.0-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly.runtime:1.2.2-1.4.0",
             "start-order":"20"
         },
         {
-            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.3.2-1.4.0",
+            "id":"org.apache.sling:org.apache.sling.scripting.sightly:1.4.2-1.4.0",
             "start-order":"20"
         }
     ],

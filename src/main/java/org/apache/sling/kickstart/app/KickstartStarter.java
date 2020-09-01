@@ -18,7 +18,6 @@ package org.apache.sling.kickstart.app;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -125,10 +124,10 @@ public class KickstartStarter implements Runnable, ControlTarget {
     private static final String PROP_HOST = "org.apache.felix.http.host";
 
     /** Path to default Sling Feature Model file **/
-    private static final String DEFAULT_SLING_FEATURE_MODEL_FILE_PATH = "/standalone/feature-sling12.json";
+    private static final String DEFAULT_SLING_FEATURE_MODEL_FILE_PATH = "/default/org.apache.sling-12.json";
 
     /** Path to default Sling Feature Model feature archive **/
-    private static final String DEFAULT_SLING_FEATURE_ARCHIVE_PATH = "/org.apache.sling.kickstart.far";
+    private static final String DEFAULT_SLING_FEATURE_ARCHIVE_PATH = "/default/org.apache.sling.kickstart.far";
 
     private boolean started = false;
 

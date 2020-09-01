@@ -1,6 +1,5 @@
 
 {
-    "id":"${project.groupId}:${project.artifactId}:slingfeature:sling-event:${project.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.event.dea:1.1.4",

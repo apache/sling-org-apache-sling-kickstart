@@ -1,21 +1,16 @@
 
 {
-    "id":"${project.groupId}:${project.artifactId}:slingfeature:healthcheck:${project.version}",
     "bundles":[
         {
-            "id":"org.apache.felix:org.apache.felix.healthcheck.api:2.0.2",
+            "id":"org.apache.felix:org.apache.felix.healthcheck.api:2.0.4",
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.healthcheck.core:2.0.6",
+            "id":"org.apache.felix:org.apache.felix.healthcheck.core:2.0.8",
             "start-order":"5"
         },
         {
-            "id":"org.apache.felix:org.apache.felix.healthcheck.generalchecks:2.0.4",
-            "start-order":"5"
-        },
-        {
-            "id":"org.apache.felix:org.apache.felix.healthcheck.webconsoleplugin:2.0.0",
+            "id":"org.apache.felix:org.apache.felix.healthcheck.generalchecks:2.0.6",
             "start-order":"5"
         },
         {

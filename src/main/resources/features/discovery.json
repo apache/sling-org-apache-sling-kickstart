@@ -1,6 +1,5 @@
 
 {
-    "id":"${project.groupId}:${project.artifactId}:slingfeature:sling-discovery:${project.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.discovery.api:1.0.4",

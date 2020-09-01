@@ -1,6 +1,5 @@
 
 {
-    "id":"${project.groupId}:${project.artifactId}:slingfeature:sling-caconfig:${project.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.caconfig.api:1.2.0",

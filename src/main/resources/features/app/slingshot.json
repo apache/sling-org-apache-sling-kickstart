@@ -1,6 +1,5 @@
 
 {
-    "id":"${project.groupId}:${project.artifactId}:slingfeature:sling_slingshot:${project.version}",
     "bundles":[
         {
             "id":"org.apache.sling:org.apache.sling.sample.slingshot:0.9.0",
