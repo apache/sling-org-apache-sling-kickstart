@@ -25,21 +25,10 @@ This plugin depends on the **Sling Kickstart Maven Plugin** which is then used t
 
 ## Update to the Latest Sling
 
-This project ships with a Sling 12 Feature Model that is pretty soon outdated
-and will only be updated on the next release.
-That said this project contains the means to update that file if you need to do so:
-
-1. Checkout the **Sling Starter Project** (sling-org-apache-sling-starter
-2. Run the **sling-fm-pom.xml** build with the sling starter path as property
-```
-mvn -f sling-fm-pom.xml clean package -Dsling.starter.folder=<path to the sling starter folder> -P create-far
-```
-3. Copy the Sling12 Feature File: **target/slingfeature-tmp/feature-sling12.json** into the
-**src/main/resources/standalone/fm** folder replacing the old one
-4. Copy the Sling12 Feature File: **target/org.apache.sling.kickstart-\*.far** into the
-**src/main/resources/standalone/far** folder replacing the old one by renaming it to
-**org.apache.sling.kickstart.far**.
-5. Build the Kickstart project (see above in **Build**) and then run it (see below in **Usage**)
+This project contains a copy of the Sling Starter features models and uses the **oak-tar**
+configuration for its internal Sling 12 Feature Archive.
+To update you just need to copy all available feature models from the Sling Starter module
+and place it into the **src/main/resources/features** folder.
 
 ## Usage
 
@@ -142,6 +131,8 @@ If no other Feature Module file is provided this launch aborts.
 The Kickstart project also comes with the Feature Models and the scripts to run
 a Sling Composite Node Store as well having the option to upgrade a Sling instance
 afterwards.
+**Note**: keep in mind that these feature model files are not based on the latest
+Sling 12 feature models.
 
 #### Feature Models
 

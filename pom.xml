@@ -42,7 +42,7 @@
         <sling-kickstart-maven-plugin.version>0.0.6</sling-kickstart-maven-plugin.version>
         <slingfeature-maven-plugin.version>1.3.14</slingfeature-maven-plugin.version>
 
-        <picocli.version>3.9.6</picocli.version>
+        <picocli.version>4.5.1</picocli.version>
         <org.apache.sling.feature.launcher.version>1.1.4</org.apache.sling.feature.launcher.version>
         <org.apache.sling.feature.extension.content.version>1.0.6</org.apache.sling.feature.extension.content.version>
         <org.apache.felix.framework.version>6.0.3</org.apache.felix.framework.version>
@@ -50,8 +50,8 @@
         <commons-lang.version>2.6</commons-lang.version>
         <osgi.core.version>7.0.0</osgi.core.version>
 
-        <org.apache.felix.utils.version>1.11.2</org.apache.felix.utils.version>
-        <httpclient.version>4.5.10</httpclient.version>
+        <org.apache.felix.utils.version>1.11.4</org.apache.felix.utils.version>
+        <httpclient.version>4.5.12</httpclient.version>
 
         <IT.expected.bundles.count>126</IT.expected.bundles.count>
         <block.sling.at.the.end>false</block.sling.at.the.end>
@@ -189,46 +189,6 @@
                         </goals>
                     </execution>
                 </executions>
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>aggregate-base-sling-feature</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>aggregate-features</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <aggregates>-->
-<!--                                <aggregate>-->
-<!--                                    <classifier>sling12</classifier>-->
-<!--                                    <filesInclude>**/*.json</filesInclude>-->
-<!--                                    <title>Sling 12 Feature Model</title>-->
-<!--                                </aggregate>-->
-<!--                            </aggregates>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>install-feature</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>attach-features</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>create-sling-feature-archives</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>attach-featurearchives</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <archives>-->
-<!--                                <archive>-->
-<!--                                    <classifier>sling12far</classifier>-->
-<!--                                    <includeClassifier>sling12</includeClassifier>-->
-<!--                                </archive>-->
-<!--                            </archives>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
             </plugin>
             <!-- Take out the version to avoid having to update that in the code -->
             <plugin>
@@ -279,6 +239,8 @@
                         <exclude>conf/**</exclude>
                         <exclude>launcher/**</exclude>
                         <exclude>bin/**.sh</exclude>
+                        <exclude>bin/**.sh</exclude>
+                        <exclude>src/main/resources/default/.keep.folder.alive</exclude>
                     </excludes>
                 </configuration>
             </plugin>
