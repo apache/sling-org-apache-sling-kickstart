@@ -86,6 +86,8 @@
                             <includes>
                                 <include>sling/**</include>
                                 <include>coverage.ec</include>
+                                <include>launcher/**</include>
+                                <include>conf/**</include>
                             </includes>
                         </fileset>
                     </filesets>
