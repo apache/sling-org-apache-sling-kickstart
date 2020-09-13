@@ -24,7 +24,7 @@ for features in "$@"; do
 done
 
 java -jar \
-    target/org.apache.sling.kickstart-0.0.5-SNAPSHOT.jar \
+    target/org.apache.sling.kickstart-0.0.8.jar \
     -s src/main/resources/composite-nodes/feature-sling12-two-headed.json \
     -af src/main/resources/composite-nodes/feature-two-headed-seed.json \
     ${additionalFeatures} \
