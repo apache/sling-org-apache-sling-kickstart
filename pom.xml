@@ -24,6 +24,7 @@
     <version>0.0.7-SNAPSHOT</version>
     <packaging>slingkickstart</packaging>
 
+
     <name>Apache Sling Kickstart Launcher</name>
     <description>
         Creates an Executable JAR file to launch Sling Feature Model Project
@@ -39,7 +40,7 @@
     <properties>
         <sling.java.version>8</sling.java.version>
 
-        <sling-kickstart-maven-plugin.version>0.0.6</sling-kickstart-maven-plugin.version>
+        <sling-kickstart-maven-plugin.version>0.0.8</sling-kickstart-maven-plugin.version>
         <slingfeature-maven-plugin.version>1.3.14</slingfeature-maven-plugin.version>
 
         <picocli.version>4.5.1</picocli.version>
