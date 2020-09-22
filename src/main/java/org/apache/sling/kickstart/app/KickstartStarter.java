@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.feature.launcher.impl.Main;
@@ -213,6 +214,11 @@ public class KickstartStarter implements Runnable, ControlTarget {
             }
             if(verbose) {
                 argumentList.add("-v");
+            }
+            if(properties != null) {
+                for(Entry<String, String> entry: properties.entrySet()) {
+                    addArgument(argumentList, entry.getKey(), entry.getValue());
+                }
             }
             System.out.println("Before Launching Feature Launcher, arguments: " + argumentList);
             // Now we have to handle any Start Option
