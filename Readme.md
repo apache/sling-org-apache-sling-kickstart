@@ -56,6 +56,15 @@ To shutdown the service use the 'stop' command:
 java -jar org.apache.sling.kickstart--<version>.jar stop
 ```
 
+### Providing Sling Run Modes
+
+If you project requires Sling Run Modes for Configuration purposes then
+you can provide them here with the Kickstart project by using the
+**sling.run.modes** property. Call it this way:
+```bash
+java -jar <kickstart jar file>.jar -Dsling.run.modes=mode1,mode2
+```
+
 ### Parameters
 
 The parameters of the Kickstarter is beside **-af, -s** are the same as
