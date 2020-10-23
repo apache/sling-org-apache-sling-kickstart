@@ -281,7 +281,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <kickpadJar>${project.build.directory}/${project.artifactId}-${project.version}.jar</kickpadJar>
+                    <kickstartJar>${project.build.directory}/${project.artifactId}-${project.version}.jar</kickstartJar>
                     <parallelExecution>false</parallelExecution>
                     <servers>
                         <server>
