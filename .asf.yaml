@@ -2,6 +2,16 @@ github:
   description: "Apache Sling Kickstart Launcher"
   homepage: "https://sling.apache.org/"
   labels:
-    - java
-    - sling
-    - maven
+  - "java"
+  - "sling"
+  - "maven"
+  autolink_jira:
+  - "SLING"
+  - "OAK"
+  - "JCR"
+  - "JCRVLT"
+  - "INFRA"
+  - "FELIX"
+  - "MNG"
+notifications:
+  jira_options: "link"
